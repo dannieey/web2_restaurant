@@ -1,0 +1,509 @@
+/* === Basic styles === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  line-height: 1.6;
+  background: #fafafa;
+  color: #333;
+}
+
+/* === Основной контейнер (Grid Layout) === */
+.container {
+  display: grid;
+  grid-template-columns: 1fr 3fr; /* Сайдбар занимает 1 часть, основной контент - 3 части */
+  grid-template-rows: auto 1fr auto; /* Заголовок (auto), основной контент (1fr), футер (auto) */
+  grid-template-areas:
+    "header header"  /* Заголовок занимает всю ширину */
+    "sidebar main-content" /* Сайдбар и основной контент делят пространство */
+    "footer footer";  /* Футер занимает всю ширину */
+  gap: 20px; /* Отступы между секциями */
+  padding: 20px;
+}
+
+/* === Сайдбар === */
+.sidebar {
+  grid-area: sidebar;
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 80px; /* Чтобы сайдбар оставался на месте при прокрутке */
+}
+
+.sidebar h3 {
+  font-size: 1.5rem;
+  color: #b22222;
+  margin-bottom: 20px;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+  color: #b22222;
+}
+
+/* === Основной контент (Main Content) === */
+.main-content {
+  grid-area: main-content;
+  background-color: #eee;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.main-content h1 {
+  font-size: 2rem;
+  color: #b22222;
+  margin-bottom: 10px;
+}
+
+.main-content p {
+  font-size: 1.2rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* === Заголовок (Header) === */
+.header {
+  grid-area: header;
+  background-color: #fff;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  color: #b22222;
+}
+
+/* === Футер (Footer) === */
+.footer {
+  grid-area: footer;
+  background-color: #f1f1f1;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.footer p {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* === Navigation === */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 10%;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+nav .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #b22222;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+  color: #b22222;
+}
+
+
+/* === Hero Section === */
+.hero, .menu-hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 60px 10%;
+  gap: 40px;
+  background: #fff5f5;
+}
+
+/* Стиль для левой части hero */
+.hero-left h1, .menu-hero-left h2 {
+  font-size: 2.5rem;
+  color: #b22222;
+}
+
+/* Стиль для обертки с изображением */
+.hero-h1-wrapper, .menu-h1-wrapper {
+  max-width: 350px;
+  animation: spin 12s linear infinite; /* Вращение изображения */
+}
+
+/* Стиль для изображения, которое будет круглым и крутиться */
+.hero-h1, .menu-h1 {
+  width: 300px; 
+  height: 300px; 
+  object-fit: cover; 
+  border-radius: 50%; 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); 
+}
+
+/* Анимация вращения изображения */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+
+/* === Стили для контейнера галереи === */
+.gallery {
+  padding: 20px;
+  text-align: center;
+}
+
+.gallery h2 {
+  font-size: 2rem;
+  color: #b22222;
+  margin-bottom: 20px;
+}
+
+/* === Стили для контейнера галереи (Grid Layout) === */
+.gallery-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 одинаковые колонки */
+  grid-gap: 15px; /* Равные промежутки между изображениями */
+}
+
+.gallery-item {
+  position: relative;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 200px; /* Фиксированная высота */
+  object-fit: cover; /* Изображение будет обрезаться, чтобы сохранить пропорции */
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+/* Эффект при наведении на изображение */
+.gallery-item:hover img {
+  transform: scale(1.1); /* Увеличение изображения при наведении */
+}
+
+/* === Подпись при наведении === */
+.caption {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background-color: rgba(0, 0, 0, 0.6); /* Полупрозрачный фон */
+  color: #fff;
+  padding: 12px 20px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8); /* Тень для текста */
+  border-radius: 5px;
+  transition: opacity 0.3s ease; /* Эффект появления при наведении */
+  opacity: 0; /* Скрыто до наведения */
+}
+
+/* Показываем подпись при наведении на картинку */
+.gallery-item:hover .caption {
+  opacity: 1; /* Подпись становится видимой */
+}
+
+
+
+/* === Interior Design Section === */
+.interior {
+  padding: 40px 10%;
+  background-color: #f9f9f9; 
+  border-top: 2px solid #b22222; /* Красная линия сверху */
+  border-bottom: 2px solid #b22222; 
+}
+
+/* Заголовок секции */
+.section-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.section-title h2 {
+  font-size: 2.5rem;
+  color: #b22222; 
+  font-weight: bold;
+}
+
+/* Контейнер для трех картинок */
+.interior-images {
+  display: flex; 
+  justify-content: space-between; 
+  gap: 20px; 
+}
+
+/* Стили для изображений */
+.interior-images img {
+  width: 33.33%; 
+  height: 450px; 
+  object-fit: cover; 
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); 
+}
+
+
+/* Style for the Special Offers heading */
+.special-offers-heading {
+  font-size: 2rem;
+  color: #b22222; /* Red color */
+  text-align: center;
+  margin-bottom: 40px; /* Add some space below the heading */
+}
+
+/* Container for special offers */
+.special-offers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+  padding: 40px 5%;
+}
+
+/* Style for each offer */
+.offer {
+  display: flex;
+  flex-direction: column; 
+  justify-content: flex-start; 
+  align-items: center;
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  flex: 1;
+  max-width: 30%; /* To ensure cards are evenly spaced */
+}
+
+/* Hover effect on the card */
+.offer:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Style for the text inside each offer card */
+.offer-text {
+  flex: 1;
+  text-align: center;
+}
+
+.offer-text h3 {
+  font-size: 1.6rem;
+  color: #b22222;
+  margin-bottom: 10px;
+}
+
+.offer-text p {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+/* Style for images */
+.offer-img img {
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover;
+  margin-top: 15px;
+}
+
+/* Style for the offer button */
+.offer-btn {
+  background-color: #b22222;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-transform: uppercase;
+}
+
+/* Hover effect for the button */
+.offer-btn:hover {
+  background-color: #d32f2f;
+}
+
+.offer-btn:active {
+  background-color: #9c1c1c;
+}
+
+
+
+/* === Customer Reviews Section === */
+.reviews {
+  padding: 40px 10%;
+  background-color: #f9f9f9; 
+  border-top: 2px solid #b22222; 
+  border-bottom: 2px solid #b22222; 
+}
+
+/* Заголовок секции с отзывами */
+.section-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.section-title h2 {
+  font-size: 2.5rem;
+  color: #b22222; 
+  font-weight: bold;
+}
+
+
+.review {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+}
+
+
+.review-text {
+  flex: 1; 
+  text-align: left;
+}
+
+.review-text p {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.6; 
+}
+
+
+.reviewer {
+  text-align: center;
+}
+
+.reviewer img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.reviewer p {
+  font-size: 1.1rem;
+  color: #333;
+}
+
+
+.reviewer strong {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+
+/* === Contact Info and Form === */
+
+.contact-info {
+    padding: 40px 10%;
+}
+
+
+.info-box {
+    background-color: #ffe0e0; 
+    padding: 20px;
+    border-radius: 10px; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+    margin-top: 20px;
+}
+
+
+.info-box p {
+    font-size: 1.1rem;
+    color: #555; 
+    margin-bottom: 10px;
+}
+
+
+.info-box a {
+    color: #b22222; 
+    text-decoration: none;
+}
+
+.info-box a:hover {
+    text-decoration: underline; /* Подчеркивание при наведении */
+}
+
+.contact-info, .reservation {
+  padding: 40px 10%;
+}
+
+form input, form button {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+}
+
+form button {
+  background-color: #b22222;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #900000;
+}
+
+footer {
+  text-align: center;
+  background: #b22222;
+  color: #fff;
+  padding: 15px;
+}
